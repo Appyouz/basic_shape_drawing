@@ -4,6 +4,8 @@
 
 void drawCircle(SDL_Renderer *renderer, int32_t centreX, int32_t centreY,
                 int32_t radius);
+
+void drawSmileyMouth(SDL_Renderer *renderer, int32_t centerX, int32_t centerY, int32_t radius) ;
 int main() {
   // Grab the window
   SDL_Window *window{nullptr};
@@ -63,14 +65,20 @@ int main() {
     // This block sets the render draw color to red and draws a rectangle
     // outline
     SDL_SetRenderDrawColor(renderer, 255, 238, 3, 255);
-    SDL_RenderDrawRect(renderer, &rectangle);
+    // SDL_RenderDrawRect(renderer, &rectangle);
+    drawCircle(renderer, 400, 300,  100);
 
     SDL_SetRenderDrawColor(renderer, 255, 238, 3, 255);
-    SDL_RenderFillRect(renderer, &filledRect);
+    drawCircle(renderer, 370, 270,  20);
+    // SDL_RenderFillRect(renderer, &filledRect);
+    SDL_SetRenderDrawColor(renderer, 255, 238, 3, 255);
+    drawCircle(renderer, 430, 270,  20);
 
     // Draw circle
     SDL_SetRenderDrawColor(renderer, 255, 238, 0, 255);
-    drawCircle(renderer, 400, 400, 100);
+    // drawCircle(renderer, 400, 400, 100);
+    drawSmileyMouth(renderer,400,320,60);
+
 
     SDL_RenderPresent(renderer);
   }
@@ -115,4 +123,15 @@ void drawCircle(SDL_Renderer *renderer, int32_t centreX, int32_t centreY,
       error += (tx - diameter);
     }
   }
+}
+
+void drawSmileyMouth(SDL_Renderer *renderer, int32_t centerX, int32_t centerY, int32_t radius) {
+    // Draw a curved line representing the mouth
+    for (int32_t x = -radius; x <= radius; ++x) {
+        // Calculate the corresponding y-coordinate using a quadratic equation
+        int32_t y = static_cast<int32_t>(0.6 * sqrt(radius * radius - x * x));
+
+        // Draw the point if it's within the bounds of the mouth
+        SDL_RenderDrawPoint(renderer, centerX + x, centerY + y);
+    }
 }
