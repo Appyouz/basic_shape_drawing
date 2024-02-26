@@ -55,8 +55,8 @@ int main() {
       }
     }
 
-    // clear the screen
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
+    // clear the screen and change the screen background color
+    SDL_SetRenderDrawColor(renderer, 128, 128, 128, SDL_ALPHA_OPAQUE);
     SDL_RenderClear(renderer);
 
     // Do drawing here
